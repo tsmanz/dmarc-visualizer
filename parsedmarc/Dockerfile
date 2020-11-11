@@ -1,7 +1,9 @@
-FROM python:alpine
+FROM python:3.7
 
-RUN apk add build-base libxml2-dev libxslt-dev \
-    && pip install parsedmarc
+RUN apt-get update \
+    && apt-get install -y libxml2-dev libxslt-dev python-dev \
+    && pip install parsedmarc \
+    && rm -rf /root/.cache/ \
+    && rm -rf /var/lib/{apt,dpkg}/
 
 COPY parsedmarc.ini /
-#COPY GeoLite2-Country.mmdb /usr/share/GeoIP/GeoLite2-Country.mmdb
