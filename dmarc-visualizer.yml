@@ -4,8 +4,6 @@ services:
     build: ./parsedmarc/
     volumes:
       - ./output_files:/output
-      - ./GeoIP:/usr/share/GeoIP:ro
-    command: parsedmarc -c /parsedmarc.ini
     depends_on:
       - elasticsearch
     restart: on-failure
